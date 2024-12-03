@@ -14,3 +14,5 @@ Managing medical records securely and efficiently is a critical challenge for he
 
 #Overall System Diagram
 ![Picture1](https://github.com/user-attachments/assets/f7f5dacc-2a4e-4f0d-9875-e973eaaf791b)
+
+
