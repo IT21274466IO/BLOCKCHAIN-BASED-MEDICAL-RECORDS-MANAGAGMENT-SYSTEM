@@ -37,9 +37,11 @@ Completed
 
 
 # Component 4 
-Component Name :
+Component Name : Risk Categorize Predictive Models For Medical System
 
-Model Name :
+Model Name : Risk Categorize Model 
+
+Completed
 
 
 
