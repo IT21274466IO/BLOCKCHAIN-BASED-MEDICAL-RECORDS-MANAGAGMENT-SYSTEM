@@ -53,11 +53,11 @@ Completed
 
 Group Leader - IT20602000 - Indusara J.D.L - Component 1
 
-Member 2 - IT21274466 - Burah T.I.O - Component 2
+Member 1 - IT21274466 - Burah T.I.O - Component 2
 
-Member 3 - IT21349188 - Kokuhennadige.C.K - Component 3
+Member 2 - IT21349188 - Kokuhennadige.C.K - Component 3
 
-Member 4 - IT21303548 - Gunasekara W.M.W.A.G.T.N.A - Component 4
+Member 3 - IT21303548 - Gunasekara W.M.W.A.G.T.N.A - Component 4
 
 # for more information, contact via :
 Indusara J.D.L - it20602000@my.sliit.lk
