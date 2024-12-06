@@ -14,26 +14,26 @@ Our research focuses on developing a Blockchain-Based Medical Records Management
 # Research Components
 
 # Component 1 
-Component Name : Blockchain-Integrated Medical Image Categorization and Secure Retrieval
-Model Name : Medical Image Identify and Prediction Model
-Completed
+#Component Name : Blockchain-Integrated Medical Image Categorization and Secure Retrieval
+#Model Name : Medical Image Identify and Prediction Model
+#Completed
 
 # Component 2
-Component Name : 
-Model Name : 
+#Component Name : 
+#Model Name : 
 
 
 # Component 3 
-Component Name : 
-Model Name :
+#Component Name : 
+#Model Name :
 
 
-#Component 4 
-Component Name :
-Model Name :
+# Component 4 
+#Component Name :
+#Model Name :
 
 
-#Overall System Architecture Diagram
+# Overall System Architecture Diagram
 
 ![image](https://github.com/user-attachments/assets/44741a22-e6b7-4cfa-915b-d385cbc02aef)
 
@@ -44,7 +44,7 @@ Member 2 - IT21274466 - Burah T.I.O - Component 2
 Member 3 - IT21349188 - Kokuhennadige.C.K - Component 3
 Member 4 - IT21303548 - Gunasekara W.M.W.A.G.T.N.A - Component 4
 
-# for more information contact via :
+# for more information, contact via :
 Indusara J.D.L - it20602000@my.sliit.lk
 Burah T.I.O - it21274466@my.sliit.lk
 Kokuhennadige.C.K - it21349188@my.sliit.lk
