@@ -12,7 +12,8 @@
 #Introduction
 Managing medical records securely and efficiently is a critical challenge for healthcare institutions. Current systems often face issues such as data breaches, inefficiencies in accessing records, and lack of interoperability, which hinder effective patient care. To address these challenges, our research focuses on developing a Blockchain-Based Medical Records Management System. Blockchain technology provides a decentralized and tamper-proof framework, ensuring secure storage and controlled sharing of medical data. This research aims to enhance the reliability of medical record systems while laying the foundation for scalable, secure, and future-ready healthcare solutions.
 
-#Overall System Diagram
-![Picture1](https://github.com/user-attachments/assets/f7f5dacc-2a4e-4f0d-9875-e973eaaf791b)
+#Overall System Architecture Diagram
+
+![image](https://github.com/user-attachments/assets/44741a22-e6b7-4cfa-915b-d385cbc02aef)
 
 
