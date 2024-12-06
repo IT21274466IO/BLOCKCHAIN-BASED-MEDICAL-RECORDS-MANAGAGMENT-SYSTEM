@@ -11,13 +11,41 @@ Managing medical records securely and efficiently is a critical challenge for he
 # Overview 
 Our research focuses on developing a Blockchain-Based Medical Records Management System for Healthcare Institutions to enhance data security, privacy, and accessibility. The system integrates blockchain technology to securely store various types of medical records, including medical images , patient-doctor conversation reports,  and medical report data. Each team member contributes a distinct component and integrating  Machine learning models are utilized for image processing and predictive analysis, creating a comprehensive healthcare ecosystem. Each component addresses specific aspects of data storage and analysis, ensuring a robust and patient-centric solution. This approach enhances the security and accessibility of critical medical information. The project envisions a future where healthcare data is seamlessly managed with blockchain technology.
 
+# Research Components
+
+# Component 1 
+Component Name : Blockchain-Integrated Medical Image Categorization and Secure Retrieval
+Model Name : Medical Image Identify and Prediction Model
+Completed
+
+# Component 2
+Component Name : 
+Model Name : 
+
+
+# Component 3 
+Component Name : 
+Model Name :
+
+
+#Component 4 
+Component Name :
+Model Name :
 
 
 #Overall System Architecture Diagram
 
 ![image](https://github.com/user-attachments/assets/44741a22-e6b7-4cfa-915b-d385cbc02aef)
 
-### Group Leader - IT20602000 - Indusara J.D.L
-### Member 2 - IT21274466 - Burah T.I.O 
-### Member 3 - IT21349188 - Kokuhennadige.C.K
-### Member 4 - IT21303548 - Gunasekara W.M.W.A.G.T.N.A.  
+# Contributers
+
+Group Leader - IT20602000 - Indusara J.D.L - Component 1
+Member 2 - IT21274466 - Burah T.I.O - Component 2
+Member 3 - IT21349188 - Kokuhennadige.C.K - Component 3
+Member 4 - IT21303548 - Gunasekara W.M.W.A.G.T.N.A - Component 4
+
+# for more information contact via :
+Indusara J.D.L - it20602000@my.sliit.lk
+Burah T.I.O - it21274466@my.sliit.lk
+Kokuhennadige.C.K - it21349188@my.sliit.lk
+Gunasekara W.M.W.A.G.T.N.A - it21303548@my.sliit.lk
