@@ -28,9 +28,11 @@ Model Name :
 
 
 # Component 3 
-Component Name : 
+Component Name : AI-Driven Doctor Recommendation and Symptom Analysis
 
-Model Name :
+Model Name : Symptom Identification and Pre-Appointment Guidance Model
+
+Completed
 
 
 
