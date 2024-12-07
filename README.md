@@ -15,10 +15,31 @@ Our research focuses on developing a Blockchain-Based Medical Records Management
 
 # Component 1 
 Component Name : Blockchain-Integrated Medical Image Categorization and Secure Retrieval
+- Classify medical images (e.g., MRI, X-rays) into predefined categories such as diseases or symptoms.
+- Utilize blockchain for ensuring tamper-proof and decentralized storage, allowing secure access and retrieval of categorized images.
+- Enable accurate predictions to assist healthcare professionals in making informed decisions.
+
+**Key Features:** 
+- Efficient Image Classification: MobileNetV2-based lightweight architecture for rapid and accurate image processing.
+- Transfer Learning: Leverages pre-trained weights from ImageNet for better accuracy with limited training data.
+- Secure Data Handling: Integration with blockchain to ensure secure and immutable storage of categorized medical images.
+- User-Friendly Deployment: Provides an interactive function to predict and visualize the classification of uploaded medical images.
+
+**Technologies Used:**  
+- Machine Learning Frameworks:
+    - TensorFlow/Keras: For model development, training, and evaluation.
+    - TensorFlow Hub: Integration of pre-trained models like MobileNetV2.
+- Deep Learning Techniques:
+    - MobileNetV2 as a base for feature extraction.
+    - Dense layers added for customized classification with 15 output categories.
+- Deployment Tools:
+    - Model saved as sample_model.h5 for future inference.
+- Blockchain Integration:
+    - For secure storage and retrieval of categorized images.
 
 Model Name : Medical Image Identify and Prediction Model
 
-Completed
+Completed with 89.88% accuracy
 
 # Component 2
 Component Name : Voice-to-Text Transcription (NLP) and Conversational AI for Treatment Recommender
