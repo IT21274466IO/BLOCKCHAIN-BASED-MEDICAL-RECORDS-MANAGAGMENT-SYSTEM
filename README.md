@@ -50,10 +50,10 @@ Component Name : Voice-to-Text Transcription (NLP) and Conversational AI for Tre
 - NLP-Based Information Extraction: Extracts structured information from unstructured conversational text.
 - Custom Treatment Recommendations: Provides treatment plans and medication suggestions based on the extracted information.
 - Multi-Model Architecture:
-        - Symptom Classification Model
-        - Diagnosis Prediction Model
-        - Medicines/Drugs Prediction Model
-        - Treatment Plan Suggestion Model
+    - Symptom Classification Model.
+    - Diagnosis Prediction Model.
+    - Medicines/Drugs Prediction Model
+    - Treatment Plan Suggestion Model
 - Output Display: Summarizes results into patient's extracted symptoms, diagnosis, medicines, treatment plans, and relevant notes for easy visualization.
 
 **Technologies Used:**  
