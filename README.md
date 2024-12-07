@@ -21,10 +21,11 @@ Model Name : Medical Image Identify and Prediction Model
 Completed
 
 # Component 2
-Component Name : 
+Component Name : Voice-to-Text Transcription (NLP) and Conversational AI for Treatment Recommender
 
-Model Name : 
+Model Name : Medical Conversation Analysis and Treatment Guidance Model
 
+Model Completed with 67.71% accuracy 
 
 
 # Component 3 
