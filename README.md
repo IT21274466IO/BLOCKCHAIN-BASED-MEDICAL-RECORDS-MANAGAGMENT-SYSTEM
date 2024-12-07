@@ -22,6 +22,23 @@ Completed
 
 # Component 2
 Component Name : Voice-to-Text Transcription (NLP) and Conversational AI for Treatment Recommender
+This component leverages NLP and AI to transcribe and analyze patient-doctor conversations, generating treatment recommendations based on the extracted insights.
+
+**Key Features:**  
+- Voice-to-Text Conversion: Converts audio of patient-doctor conversations into text using speech-to-text technologies.
+- NLP-Based Information Extraction: Extracts structured information from unstructured conversational text.
+- Custom Treatment Recommendations: Provides treatment plans and medication suggestions based on the extracted information.
+- Multi-Model Architecture: Symptom Classification Model
+                            Diagnosis Prediction Model
+                            Medicines/Drugs Prediction Model
+                            Treatment Plan Suggestion Model
+- Output Display: Summarizes results into patient's extracted symptoms, diagnosis, medicines, treatment plans, and relevant notes for easy visualization.
+
+**Technologies Used:**  
+- **Speech-to-Text Frameworks:** Google Speech-to-Text API or Whisper by OpenAI for high-accuracy audio transcription.  
+- **Natural Language Processing (NLP)** *SpaCy*: For named entity recognition (NER) and medical text processing, *NLTK*: For tokenization, stopword removal, and preprocessing, and *BERT* or *BioBERT*: Pre-trained models fine-tuned for medical conversation data.. 
+- **Machine Learning Models:** *Multinomial Naive Bayes*: For symptom classification and diagnosis prediction and *Random Forest*: For medicines and treatment plan suggestions.
+- **Frameworks and Libraries:** Python: Core programming language for development and Flask or FastAPI: To integrate the model with an interactive UI for deployment.
 
 Model Name : Medical Conversation Analysis and Treatment Guidance Model
 
