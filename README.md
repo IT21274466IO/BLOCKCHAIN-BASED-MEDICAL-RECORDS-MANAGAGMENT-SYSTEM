@@ -68,11 +68,42 @@ Model Completed with 67.71% accuracy
 
 
 # Component 3 
-Component Name : AI-Driven Doctor Recommendation and Symptom Analysis
+◉ Component Name : AI-Driven Doctor Recommendation and Symptom Analysis
 
-Model Name : Symptom Identification and Pre-Appointment Guidance Model
+◉ Model Name : Symptom Identification and Pre-Appointment Guidance Model
 
-Completed
+◉ Technologies Used:
+✓ Machine Learning Frameworks:
+TensorFlow/Keras: For model development, training, and evaluation.
+REST API – Flask: Integration of pre-trained models like TensorFlow.
+
+✓ Deep Learning Techniques:
+Neural Networks (RNN) for custom processing.
+Feature extraction and classification for specific use cases.
+
+✓ Frontend Development:
+React: For building dynamic user interfaces.
+HTML, CSS, JavaScript: Core technologies for web interface design.
+
+✓ Backend Development:
+Node.js: Server-side programming.
+Python: Handling logic and algorithm integration.
+
+✓ Deployment Tools:
+Model saved formats: For reusability and inference.
+
+✓ Technical Concepts:
+Deep Learning and advanced AI algorithms.
+
+◉ Key Features and Functionality:
+
+✓    Personalized Doctor Recommendations
+✓    Symptom Analysis and Interpretation
+✓    Pre-Appointment Advice and Preparation
+✓    System Architecture and Integration
+✓   Evaluation of Accuracy and Effectiveness
+
+Completed with 98.99% accuracy
 
 
 # Component 4
