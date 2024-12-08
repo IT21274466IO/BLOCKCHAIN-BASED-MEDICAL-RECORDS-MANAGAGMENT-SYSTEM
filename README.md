@@ -75,7 +75,7 @@ Model Name : Symptom Identification and Pre-Appointment Guidance Model
 Completed
 
 
-
+# Component 4
 Component Name: Risk Categorization Predictive Models for Medical System
 
 This component uses predictive analytics and machine learning models to classify patient risk levels based on medical data and image reports, aiding in prioritizing treatment and monitoring.
