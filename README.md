@@ -76,12 +76,34 @@ Completed
 
 
 
-# Component 4 
-Component Name : Risk Categorize Predictive Models For Medical System
+Component Name: Risk Categorization Predictive Models for Medical System
 
-Model Name : Risk Categorize Model 
+This component uses predictive analytics and machine learning models to classify patient risk levels based on medical data and image reports, aiding in prioritizing treatment and monitoring.
 
-Completed
+Key Features:
+•	Patient Risk Level Categorization: Accurately predicts and categorizes patient risk as Low, Medium, or High based on input data.
+•	Medical Data Integration: Utilizes structured patient records and unstructured data, such as medical images and reports.
+•	Multi-Input Model Architecture:
+o	Medical History Analysis Model: Analyzes historical patient data for risk prediction.
+o	Image-Based Risk Assessment Model: Processes medical reports images for added insights.
+o	Blockchain Data Integrity Check: Ensures that medical data remains secure and unaltered.
+•	Output Visualization: Displays categorized risk levels with reasons for classification for better decision-making.
+
+Technologies Used:
+•	Machine Learning Models:
+  o 	Random Forest: For patient risk prediction.
+  o 	Convolutional Neural Networks (CNNs): For image-based assessments.
+•	Data Security and Integration:
+  o 	Blockchain Frameworks: Ensures data security and traceability.
+•	Frameworks and Libraries:
+o	TensorFlow/Keras: For model development.
+o	Python: Programming language for data preprocessing and model integration.
+o	Flask/FastAPI: For deployment with an interactive UI.
+
+
+Model Name: Risk Categorization Model
+
+Model Status: Completed with 69.00% accuracy
 
 
 
