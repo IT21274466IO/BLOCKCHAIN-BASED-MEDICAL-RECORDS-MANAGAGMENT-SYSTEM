@@ -27,11 +27,29 @@ const Medical = () => {
   const [mediaStream, setMediaStream] = useState(null);
 
   const [showGif, setShowGif] = useState(false);
-  const [language, setLanguage] = useState("en-US");
+  const [language, setLanguage] = useState("si-LK");
 
   // Function to count words in a string
   const countWords = (str) => {
     return str.trim().split(/\s+/).length;
+  };
+
+  // Function to translate text (using Google Translate API)
+  const translateText = async (text) => {
+    try {
+      const response = await axios.post(
+        "https://translation.googleapis.com/language/translate/v2",
+        {
+          q: text,
+          target: "en", // Translate to English
+          key: "YOUR_GOOGLE_API_KEY", // Replace with your API Key
+        }
+      );
+      return response.data.data.translations[0].translatedText;
+    } catch (error) {
+      console.error("Error translating text:", error);
+      return text; // Return original text if translation fails
+    }
   };
 
   const start = async () => {
@@ -126,13 +144,15 @@ const Medical = () => {
     }
 
     if (textData.trim() !== "") {
+      const translatedText = await translateText(textData);
       const response = await axios.post(
         LocalIP + ":5555/text",
-        JSON.stringify({ text: textData }),
+        JSON.stringify({ text: translatedText }),
         {
           headers: { "Content-Type": "application/json" },
         }
       );
+      console.log("Translated Text: " + translatedText)
 
       const formattedPrediction = `Symptoms: ${response.data.Symptoms}\nDiagnosis: ${response.data.Diagnosis}\nMedicines: ${response.data.Medicines}\nTreatment: ${response.data.Treatment}\nNotes: ${response.data.Notes}`;
 
