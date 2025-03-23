@@ -57,6 +57,7 @@ const Medical = () => {
             setTextData((prev) => prev + " " + event.results[i][0].transcript);
           } else {
             interimText += event.results[i][0].transcript;
+            console.log("Interim Text:", interimText);
           }
         }
       };
