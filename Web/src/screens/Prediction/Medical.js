@@ -6,6 +6,7 @@ import MicRecorder from "mic-recorder-to-mp3";
 import { Card } from "antd";
 import { Button } from '../../components/Form';
 import { toast } from 'react-hot-toast';
+import loadingGif from './listen.gif'; 
 
 const Mp3Recorder = new MicRecorder({ bitRate: 128 });
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -23,6 +24,8 @@ const Medical = () => {
     const [editablePrediction, setEditablePrediction] = useState("");  
     const [mediaStream, setMediaStream] = useState(null);
 
+    const [showGif, setShowGif] = useState(false);
+
     // Function to count words in a string
     const countWords = (str) => {
         return str.trim().split(/\s+/).length;
@@ -38,6 +41,7 @@ const Medical = () => {
             Mp3Recorder.start()
                 .then(() => {
                     setIsRecording(true);
+                    setShowGif(true);
                     recognition.start();
                 })
                 .catch((e) => console.error("MicRecorder Error:", e));
@@ -92,6 +96,8 @@ const Medical = () => {
             mediaStream.getTracks().forEach(track => track.stop());
             setMediaStream(null);
         }
+
+        setShowGif(false); 
     };
 
     const startFun = () => {
@@ -158,6 +164,13 @@ const Medical = () => {
                         <Button label="🎤 Start Listening" onClick={startFun} />
                     ) : (
                         <Button label="⏹ Stop Listening" onClick={stop} />
+                    )}
+
+                    {/* Display the GIF while recording */}
+                    {showGif && (
+                        <div className="mt-5">
+                            <img src={loadingGif} alt="Listening" className="w-24 h-24 mx-auto animate-pulse" />
+                        </div>
                     )}
 
                     <div style={{ marginTop: "40px" }}>
