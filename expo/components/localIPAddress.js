@@ -1,5 +1,5 @@
 
 // var LocalIP="192.168.1.11"
-var LocalIP="192.168.226.200"
+var LocalIP="192.168.1.12"
 
 export default LocalIP 

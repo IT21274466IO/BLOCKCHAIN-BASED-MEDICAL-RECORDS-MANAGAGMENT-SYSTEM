@@ -29,7 +29,7 @@ function Header() {
       title: 'Logout',
       icon: AiOutlinePoweroff,
       onClick: () => {
-        navigate('/login');
+        navigate('/');
       },
     },
   ];

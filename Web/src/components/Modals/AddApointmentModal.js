@@ -14,6 +14,7 @@ import { memberData, servicesData, sortsDatas } from '../Datas';
 import { HiOutlineCheckCircle } from 'react-icons/hi';
 import { toast } from 'react-hot-toast';
 import PatientMedicineServiceModal from './PatientMedicineServiceModal';
+import { useNavigate } from 'react-router-dom';
 
 // edit member data
 const doctorsData = memberData.map((item) => {
@@ -36,6 +37,8 @@ function AddAppointmentModal({ closeModal, isOpen, datas }) {
     whatsapp: false,
   });
   const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   // on change share
   const onChangeShare = (e) => {
@@ -200,6 +203,16 @@ function AddAppointmentModal({ closeModal, isOpen, datas }) {
               toast.error('This feature is not available yet');
             }}
           />
+        </div>
+
+        {/* Start Examine Button */}
+        <div className="flex justify-center w-full mt-6">
+          <Button
+            label="Start Examine"
+            onClick={() => navigate('/medical')}  // Navigate to the '/medical' route
+            className="text-white text-sm rounded-lg font-medium"
+          >
+          </Button>
         </div>
       </div>
     </Modal>
