@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+  font-family: 'Poppins', sans-serif;
+}
+::-webkit-scrollbar {
+  /* display: none; */
+}
+input:focus, textarea:focus, select:focus,button:focus{
+  outline: none;
+}
+
+.flex-colo{
+  @apply flex flex-col justify-center items-center;
+}
+
+.flex-rows{
+  @apply flex flex-row justify-center items-center;
+}
+
+.flex-btn{
+  @apply flex justify-between items-center;
+}
+.transitions{
+  @apply transition duration-500 ease-in-out;
+}
+
+.box-shadow{
+  box-shadow: 0px 0px 13px 0px rgba(24,50,83,0.23);
+}
+.box-hover{
+  box-shadow: 0px 0px 21px -6px rgba(19,19,48,0.24);
+}
+
+/* calender */
+.rbc-date-cell{
+  padding: 10px 30px !important;
+  font-size: 12px !important;
+  color: #183253
+}
+.rbc-time-slot .rbc-label{
+  font-size: 12px !important;
+  color: #183253;
+  padding: 10px 20px;
+  text-transform: lowercase !important;
+}
+
+/* siku */
+.rbc-time-header-content .rbc-header,
+.rbc-month-header .rbc-header{
+  font-size: 12px !important;
+  color: #183253;
+height: 50px;
+display: flex !important;
+justify-content: center !important;
+align-items: center !important;
+font-weight: 600 !important;
+background-color: #F8F9FA;
+text-transform: capitalize !important;
+
+}
+.rbc-agenda-table .rbc-header{
+  font-size: 12px !important;
+  color: #183253;
+  font-weight: 600 !important;
+background-color: #F8F9FA;
+height: 50px;
+padding: 0px 10px !important;
+text-transform: capitalize !important;
+}
+.rbc-time-view{
+  background-color: #fff !important;
+}
+.rbc-show-more{
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  color: #66B5A3 !important;
+}
+.rbc-toolbar .rbc-toolbar-label{
+  font-size: 20px !important;
+  color: #183253;
+  font-weight: 500 !important;
+  text-transform: capitalize !important;
+}
+.button-fb{
+  box-shadow: 0px 24px 48px 0px rgba(102,181,163,0.65);
+}
+/* picker */
+.react-datepicker{
+  font-family: 'Poppins', sans-serif;
+  font-size: 12px !important;
+  color: #183253;
+  text-transform: capitalize !important;
+  border: 1px solid #E8EBEE !important;
+}
+.react-datepicker__day,.react-datepicker__day-name {
+  border-radius: 100% !important;
+  margin:  5px !important;
+padding: 5px 0 !important;
+width: 37px !important;
+color: #7e7e7e !important;
+
+}
+.react-datepicker__day--selected{
+  background-color: #66B5A3 !important;
+  color: #fff !important;
+}
+.react-datepicker__day-name{
+  color: #183253 !important;
+}
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item{
+ height: 40px !important;
+ display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+.react-datepicker__time-container .react-datepicker__time .react-datepicker__time-box ul.react-datepicker__time-list li.react-datepicker__time-list-item--selected{
+  background-color: #66B5A3 !important;
+  color: #fff !important;
+}
+.react-datepicker__header--time{
+  background-color: #F3F5F7 !important;
+}
+.react-datepicker-time__header{
+  font-size: 14px !important;
+  color: #183253 !important;
+  font-weight: 600 !important;
+}
+.react-datepicker__day--in-range{
+  background-color: #66B5A3 !important;
+  color: #fff !important;
+}
+.box_class{
+  width: 100px;
+  height: 100px;
+}
+
+.btn-success{
+  background-color: #66B5A3 !important;
+  border-radius: 5px;
+}
+
+.btn-danger{
+  background-color: #f06e6e !important;
+  border-radius: 5px;
+}
