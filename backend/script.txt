@@ -1,0 +1,20 @@
+// 1.virtual environment create
+python -m venv venv            
+
+// 2.activate the virtual environment
+venv\Scripts\activate         
+
+// 3.install the required packages
+pip install -r requirements.txt
+
+// 4.upgrade pip
+python -m pip install --upgrade pip
+
+// 5.install blockchain packages
+pip install web3 py-solc-x     
+
+// 6.run deploy blockchain (not use guys, i already done)
+python app/blockchain/deploy_contract.py  
+
+// 7.run flask backend
+python run.py  
