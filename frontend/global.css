@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.viewBox {
+  width: 400px;
+  height: 400px;
+  background-color: 'blue';
+}

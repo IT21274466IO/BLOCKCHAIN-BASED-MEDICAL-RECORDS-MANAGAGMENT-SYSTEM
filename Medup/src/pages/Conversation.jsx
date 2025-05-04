@@ -1,0 +1,259 @@
+import React, { useRef, useState } from "react";
+import { useDoctorStore } from "../store/useDoctorStore";
+import { predictNlpFromAudio, predictNlpFromText } from "../api/doctorApi";
+import WaveSurfer from "wavesurfer.js";
+import { startAudioRecording } from "../utils/audioRecorder";
+
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+
+export default function Conversation() {
+  const token = useDoctorStore((state) => state.token);
+  const [response, setResponse] = useState(null);
+  const [transcript, setTranscript] = useState("");
+  const [audioBlob, setAudioBlob] = useState(null);
+  const waveformRef = useRef(null);
+  const waveSurfer = useRef(null);
+  const mediaRecorderRef = useRef(null);
+  const audioChunksRef = useRef([]);
+  const audioElementRef = useRef(null);
+  const [textInput, setTextInput] = useState("");
+
+  const [listening, setListening] = useState(false);
+  const recognitionRef = useRef(null);
+
+  const renderWaveform = (urlOrBlob) => {
+    if (waveSurfer.current) waveSurfer.current.destroy();
+
+    waveSurfer.current = WaveSurfer.create({
+      container: waveformRef.current,
+      waveColor: "#d1fae5",
+      progressColor: "#10b981",
+      height: 80,
+      barWidth: 2,
+    });
+
+    if (typeof urlOrBlob === "string") {
+      waveSurfer.current.load(urlOrBlob);
+    } else {
+      waveSurfer.current.loadBlob(urlOrBlob);
+    }
+  };
+
+  //stop audio recording
+  const handleStop = (blob) => {
+    const fixedBlob = new Blob([blob], { type: "audio/webm" }); // or "audio/wav" based on MediaRecorder
+    setAudioBlob(fixedBlob);
+    renderWaveform(fixedBlob);
+  };
+  
+
+  const stopRecording = () => {
+    mediaRecorderRef.current?.stop();
+  };
+
+  //handle audio upload and prediction
+  const handleUpload = async () => {
+    if (!audioBlob) return alert("No audio to analyze");
+    try {
+      const result = await predictNlpFromAudio(audioBlob, token);
+      setTranscript(result.transcribed_text);
+      setResponse(result);
+    } catch (err) {
+      alert(err?.response?.data?.error || "Prediction failed");
+    }
+  };
+
+  //handle file upload
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setAudioBlob(file);
+      setResponse(null);
+      setTranscript("");
+      renderWaveform(file);
+    }
+  };
+
+  //handle audio preview
+  const handlePreview = () => {
+    if (recognitionRef.current && listening) {
+      recognitionRef.current.stop();
+      setListening(false);
+    }
+  
+    if (audioElementRef.current && audioBlob) {
+      const audioURL = URL.createObjectURL(audioBlob);
+      audioElementRef.current.src = audioURL;
+  
+      // Revoke URL after audio is loaded to prevent memory leaks
+      audioElementRef.current.onloadeddata = () => {
+        URL.revokeObjectURL(audioURL);
+      };
+  
+      audioElementRef.current.play().catch((err) => {
+        console.error("Audio playback failed. Possibly due to autoplay restrictions.", err);
+      });
+    }
+  };
+
+  //handle text prediction
+  const handleTextSubmit = async (e) => {
+    e.preventDefault();
+    if (!textInput.trim()) return;
+    try {
+      const result = await predictNlpFromText(textInput, token);
+      setResponse(result);
+    } catch (err) {
+      alert(err?.response?.data?.error || "Text prediction failed");
+    }
+  };
+
+  const startListening = () => {
+    if (!SpeechRecognition) {
+      alert("Speech Recognition is not supported in this browser.");
+      return;
+    }
+
+    recognitionRef.current = new SpeechRecognition();
+    recognitionRef.current.continuous = true;
+    recognitionRef.current.interimResults = true;
+    recognitionRef.current.lang = "en-US";
+
+    recognitionRef.current.onresult = (event) => {
+      let finalTranscript = "";
+      for (let i = event.resultIndex; i < event.results.length; ++i) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) {
+          finalTranscript += transcript + " ";
+        }
+      }
+      if (finalTranscript) {
+        setTextInput((prev) => prev + finalTranscript);
+      }
+    };
+
+    recognitionRef.current.onend = () => {
+      setListening(false);
+    };
+
+    recognitionRef.current.start();
+    setListening(true);
+
+    startAudioRecording(mediaRecorderRef, audioChunksRef, handleStop);
+  };
+
+  const stopListening = () => {
+    recognitionRef.current?.stop();
+    setListening(false);
+  };
+
+  return (
+    <div className="bg-white p-6 rounded-lg shadow space-y-6 mt-6">
+      <h2 className="text-xl font-bold text-gray-800">
+        Doctor Conversation Assistant
+      </h2>
+
+      <form onSubmit={handleTextSubmit} className="flex gap-4 items-center">
+        <textarea
+          type="text"
+          value={textInput}
+          onChange={(e) => setTextInput(e.target.value)}
+          placeholder="Enter symptoms or query..."
+          className="flex-1 border px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500"
+        />
+        <button
+          type="submit"
+          className="px-6 py-2 bg-[#087f5b] text-white rounded-full hover:bg-green-800 transition"
+        >
+          Text Analyze
+        </button>
+      </form>
+
+      <div className="flex flex-wrap justify-between items-center gap-4">
+        <div className="flex gap-4">
+          {!listening ? (
+            <button
+              onClick={startListening}
+              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              🎙️ Live Transcribe
+            </button>
+          ) : (
+            <button
+              onClick={stopListening}
+              className="px-4 py-2 bg-yellow-600 text-white rounded hover:bg-yellow-700 transition"
+            >
+              🛑 Stop Transcribe
+            </button>
+          )}
+
+          <button
+            onClick={stopRecording}
+            className="px-4 py-2 bg-lime-600 text-white rounded hover:bg-lime-700 transition"
+          >
+            Show Audio
+          </button>
+          <button
+            onClick={handlePreview}
+            className="px-4 py-2 bg-emerald-500 text-white rounded hover:bg-emerald-700-700 transition"
+          >
+            Play Audio
+          </button>
+          <label className="cursor-pointer px-4 py-2 bg-gray-200 text-sm text-gray-700 rounded hover:bg-gray-300 transition">
+            Upload Audio
+            <input
+              type="file"
+              accept="audio/*"
+              hidden
+              onChange={handleFileChange}
+            />
+          </label>
+        </div>
+
+        <button
+          onClick={handleUpload}
+          className="px-8 py-2 bg-[#087f5b] text-white hover:bg-green-800 transition rounded-full"
+        >
+          Voice Analyze
+        </button>
+      </div>
+
+      {audioBlob && (
+        <>
+          <h3 className="text-md font-medium text-gray-700 mt-4">
+            Audio Preview
+          </h3>
+          <div
+            ref={waveformRef}
+            className="w-full bg-gray-50 rounded border py-2 px-2"
+          />
+          {/* <audio ref={audioElementRef} hidden controls /> */}
+          <audio ref={audioElementRef} controls className="mt-2 w-full" />
+
+        </>
+      )}
+
+      {transcript && (
+        <div className="mt-4 text-sm text-gray-700">
+          <strong>Transcription:</strong> {transcript}
+        </div>
+      )}
+
+      {response && (
+        <div className="bg-green-50 border border-green-300 rounded p-4 mt-4">
+          <h3 className="text-lg font-semibold text-green-700 mb-2">
+            AI Response
+          </h3>
+          {Object.entries(response).map(([key, value]) =>
+            key !== "transcribed_text" ? (
+              <p key={key}>
+                <strong>{key}:</strong> {value}
+              </p>
+            ) : null
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
