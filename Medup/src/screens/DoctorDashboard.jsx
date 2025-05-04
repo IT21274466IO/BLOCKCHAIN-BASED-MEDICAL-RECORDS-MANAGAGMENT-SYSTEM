@@ -46,7 +46,7 @@ export default function DoctorLayout() {
     <div className="flex min-h-screen bg-gray-100">
       {/* Sidebar */}
       <aside className="w-64 bg-white shadow-md flex flex-col">
-        <div className="px-6 py-5 text-2xl font-bold text-green-600 border-b">
+        <div className="px-6 py-5 text-2xl font-bold text-[#14919B]border-b">
           MedUp
         </div>
         <nav className="flex-1 px-4 py-6 space-y-2">
@@ -57,8 +57,8 @@ export default function DoctorLayout() {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-2 rounded-lg transition ${
                   isActive
-                    ? "bg-green-50 text-green-600 font-medium"
-                    : "text-gray-700 hover:text-green-600 hover:bg-green-50"
+                    ? "bg-green-50 text-[#14919B] font-medium"
+                    : "text-gray-700 hover:text-[#14919B] hover:bg-green-50"
                 }`
               }
             >
@@ -70,7 +70,7 @@ export default function DoctorLayout() {
         <div className="px-4 py-4 border-t">
           <button
             onClick={() => setShowLogoutModal(true)}
-            className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+            className="w-full px-4 py-2 bg-[#14919B] text-white rounded-lg hover:bg-green-700 transition"
           >
             Logout
           </button>
@@ -107,7 +107,7 @@ export default function DoctorLayout() {
               </button>
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition"
+                className="px-4 py-2 bg-[#14919B] text-white rounded-md hover:bg-green-700 transition"
               >
                 Yes, Logout
               </button>

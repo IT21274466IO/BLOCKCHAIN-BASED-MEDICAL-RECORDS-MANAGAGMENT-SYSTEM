@@ -12,7 +12,7 @@ export default function Modal({ isOpen, onClose, title, children }) {
         >
           &times;
         </button>
-        <h2 className="text-xl font-semibold text-green-600 mb-4">{title}</h2>
+        <h2 className="text-xl font-semibold text-[#029982] mb-4">{title}</h2>
         {children}
       </div>
     </div>

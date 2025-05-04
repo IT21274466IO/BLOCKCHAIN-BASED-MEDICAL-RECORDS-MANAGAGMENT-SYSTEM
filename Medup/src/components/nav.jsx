@@ -64,7 +64,7 @@ export default function Nav() {
     <>
       <nav className="fixed top-4 left-1/2 transform -translate-x-1/2 w-[95%] md:w-[90%] bg-white/70 backdrop-blur-md border border-gray-50 rounded-full z-50 transition-all">
         <div className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
-          <div className="text-2xl font-semibold text-[#087f5b]">
+          <div className="text-2xl font-semibold text-[#14919B]">
             Med<span className="text-gray-800">Up</span>
           </div>
 
@@ -73,8 +73,8 @@ export default function Nav() {
               href="/"
               className={`text-sm transition-colors ${
                 isActive("/")
-                  ? "text-[#0ca678] font-semibold"
-                  : "text-gray-700 hover:text-green-600"
+                  ? "text-[#14919B] font-semibold"
+                  : "text-gray-700 hover:text-[#14919B]"
               }`}
             >
               Home
@@ -83,21 +83,21 @@ export default function Nav() {
               href="#contact"
               className={`text-sm transition-colors ${
                 isActive("/contact")
-                  ? "text-[#0ca678] font-semibold"
-                  : "text-gray-700 hover:text-green-600"
+                  ? "text-[#14919B] font-semibold"
+                  : "text-gray-700 hover:text-[#14919B]"
               }`}
             >
               Contact Us
             </a>
             <button
               onClick={() => setLoginOpen(true)}
-              className="text-sm text-gray-700 hover:text-green-600 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 rounded-md px-2 py-1"
+              className="text-sm text-gray-700 hover:text-[#14919B] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#14919B] rounded-md px-2 py-1"
             >
               Login
             </button>
             <button
               onClick={() => setSignupOpen(true)}
-              className="text-sm font-medium px-4 py-2 bg-[#0ca678] text-white rounded-md hover:bg-green-700 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500"
+              className="text-sm font-medium px-4 py-2 bg-[#14919B] text-white rounded-md hover:bg-[#029982] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#14919B]"
             >
               Sign Up
             </button>
@@ -106,7 +106,7 @@ export default function Nav() {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-green-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 rounded-md p-1"
+              className="text-[#14919B] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#14919B] rounded-md p-1"
             >
               {isOpen ? (
                 <XMarkIcon className="h-6 w-6" />
@@ -121,13 +121,13 @@ export default function Nav() {
           <div className="md:hidden bg-white/90 backdrop-blur-md border-t border-gray-200 px-6 pb-4 pt-2 rounded-b-2xl shadow-inner space-y-2">
             <a
               href="#home"
-              className="block text-gray-700 hover:text-green-600 text-sm"
+              className="block text-gray-700 hover:text-[#14919B] text-sm"
             >
               Home
             </a>
             <a
               href="#contact"
-              className="block text-gray-700 hover:text-green-600 text-sm"
+              className="block text-gray-700 hover:text-[#14919B] text-sm"
             >
               Contact Us
             </a>
@@ -136,7 +136,7 @@ export default function Nav() {
                 setIsOpen(false);
                 setLoginOpen(true);
               }}
-              className="block text-left w-full text-gray-700 hover:text-green-600 text-sm"
+              className="block text-left w-full text-gray-700 hover:text-[#14919B] text-sm"
             >
               Login
             </button>
@@ -145,7 +145,7 @@ export default function Nav() {
                 setIsOpen(false);
                 setSignupOpen(true);
               }}
-              className="block w-full text-center px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors"
+              className="block w-full text-center px-4 py-2 bg-[#14919B] text-white rounded-md hover:bg-[#029982] transition-colors"
             >
               Sign Up
             </button>
@@ -163,19 +163,19 @@ export default function Nav() {
             name="email"
             type="email"
             placeholder="Email"
-            className="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#14919B]"
             required
           />
           <input
             name="password"
             type="password"
             placeholder="Password"
-            className="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#14919B]"
             required
           />
           <button
             type="submit"
-            className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition"
+            className="w-full bg-[#14919B] text-white py-2 rounded-md hover:[#029982] transition"
           >
             Login
           </button>
@@ -192,43 +192,43 @@ export default function Nav() {
             name="fullname"
             placeholder="Full Name"
             required
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#14919B]"
           />
           <input
             name="email"
             type="email"
             placeholder="Email"
             required
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#14919B]"
           />
           <input
             name="password"
             type="password"
             placeholder="Password"
             required
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#14919B]"
           />
           <input
             name="specialization"
             placeholder="Specialization"
             required
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#14919B]"
           />
           <input
             name="hospital"
             placeholder="Hospital"
             required
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#14919B]"
           />
           <input
             name="mobile"
             placeholder="Mobile"
             required
-            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-green-500"
+            className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-[#14919B]"
           />
           <button
             type="submit"
-            className="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700 transition"
+            className="w-full bg-[#14919B] text-white py-2 rounded-md hover:bg-[#029982] transition"
           >
             Sign Up
           </button>

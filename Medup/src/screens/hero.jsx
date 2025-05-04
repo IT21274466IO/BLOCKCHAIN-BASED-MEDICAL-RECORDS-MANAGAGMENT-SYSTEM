@@ -70,7 +70,7 @@ export default function Hero() {
           <div>
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-800 leading-tight tracking-tighter">
               Empowering Doctors with{" "}
-              <span className="text-[#087f5b]">Smarter Healthcare</span>
+              <span className="text-[#14919B]">Smarter Healthcare</span>
             </h1>
             <p className="mt-4 text-lg text-gray-600">
               MedUp helps you manage appointments, access patient records, and
@@ -79,13 +79,13 @@ export default function Hero() {
             <div className="mt-8 flex flex-wrap gap-4">
               <button
                 onClick={() => setSignupOpen(true)}
-                className="px-6 py-3 bg-[#0ca678] text-white font-medium rounded-xl hover:bg-green-700 transition"
+                className="px-6 py-3 bg-[#14919B] text-white font-medium rounded-xl hover:bg-[#029982] transition"
               >
                 Get Started
               </button>
               <button
                 onClick={() => setLoginOpen(true)}
-                className="px-6 py-3 border border-green-600 text-green-600 font-medium rounded-xl hover:bg-green-50 transition"
+                className="px-6 py-3 border border-[#14919B] text-[#14919B] font-medium rounded-xl hover:bg-green-50 transition"
               >
                 Book a Demo
               </button>
