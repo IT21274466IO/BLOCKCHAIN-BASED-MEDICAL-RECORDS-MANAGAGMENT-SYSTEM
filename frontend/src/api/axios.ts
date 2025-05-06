@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useAuthStore } from '../Store/authStore';
 
-const BASE_URL = 'http://192.168.1.12:5000'; // replace with your actual local IP
+const BASE_URL = 'http://192.168.1.11:5000'; // replace with your actual local IP
 
 const api = axios.create({
   baseURL: BASE_URL,
