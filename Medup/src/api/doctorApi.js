@@ -88,3 +88,54 @@ export const predictNlpFromText = async (text, token) => {
 
   return res.data;
 };
+
+// get all NLP predictions for the logged-in doctor
+export const getDoctorNlpPredictions = async (token) => {
+  const res = await axios.get(`${API_BASE}/predict/nlp-predictions`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
+
+// Delete NLP prediction by blockchain_tx_id
+export const deleteNlpPrediction = async (blockchainTxId, token) => {
+  const res = await axios.delete(`${API_BASE}/predict/nlp-predictions/${blockchainTxId}`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};
+
+// API call to update the NLP prediction
+export const updateNlpPrediction = async (blockchain_tx_id, updatedResponse, token) => {
+  try {
+    const res = await axios.put(
+      `${API_BASE}/predict/update-nlp-prediction`,
+      { blockchain_tx_id, ...updatedResponse },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return res.data;
+  } catch (err) {
+    console.error("Error updating NLP prediction:", err);
+    throw err;
+  }
+};
+
+// Get all Image predictions for the logged-in doctor
+export const getDoctorImagePredictions = async (token) => {
+
+  const res = await axios.get(`${API_BASE}/predict/image-predictions/all`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return res.data;
+};

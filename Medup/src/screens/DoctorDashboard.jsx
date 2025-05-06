@@ -7,6 +7,8 @@ import {
   UserCircleIcon,
   Cog6ToothIcon,
   ChatBubbleLeftRightIcon,
+  DocumentDuplicateIcon,
+  PhotoIcon,
 } from "@heroicons/react/24/outline";
 import { useDoctorStore } from "../store/useDoctorStore";
 
@@ -23,9 +25,19 @@ const navItems = [
     icon: CalendarIcon,
   },
   {
+    name: "Medical Records",
+    path: "/doctor/dashboard/medical-records",
+    icon: DocumentDuplicateIcon,
+  },
+  {
     name: "Conversation",
     path: "/doctor/dashboard/conversation",
     icon: ChatBubbleLeftRightIcon,
+  },
+  {
+    name: "Image Predictions",
+    path: "/doctor/dashboard/images-predictions",
+    icon: PhotoIcon,
   },
   { name: "Profile", path: "/doctor/dashboard/profile", icon: UserCircleIcon },
   { name: "Settings", path: "/doctor/dashboard/settings", icon: Cog6ToothIcon },

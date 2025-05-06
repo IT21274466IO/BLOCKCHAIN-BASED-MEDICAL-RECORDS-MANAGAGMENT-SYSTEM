@@ -5,6 +5,8 @@ import os
 from datetime import datetime
 from app import mongo
 
+from flask import send_from_directory
+
 # blockchain
 from app.blockchain.interact_contract import store_record
 import hashlib
@@ -329,3 +331,83 @@ def get_user_nlp_predictions():
     if not records:
         return jsonify({'message': 'No NLP predictions found'}), 404
     return jsonify({'predictions': records}), 200
+
+# NLP get all predictions
+@prediction_bp.route('/nlp-predictions/all', methods=['GET'])
+def get_all_nlp_predictions():
+    records = list(get_mongo_db().NLP_predictions.find({}, {'_id': 0}))
+    return jsonify({'predictions': records}), 200
+
+@prediction_bp.route('/nlp-predictions/<string:blockchain_tx_id>', methods=['DELETE'])
+@jwt_required()
+def delete_nlp_prediction(blockchain_tx_id):
+    email = get_jwt_identity()  # Get the email of the authenticated user (doctor)
+
+    # Find the record in the database using blockchain_tx_id and email
+    record = mongo.db.NLP_predictions.find_one({"blockchain_tx_id": blockchain_tx_id, "email": email})
+
+    if not record:
+        return jsonify({"message": "Prediction not found or unauthorized"}), 404
+
+    # Perform the deletion
+    mongo.db.NLP_predictions.delete_one({"blockchain_tx_id": blockchain_tx_id, "email": email})
+
+    return jsonify({"message": "Prediction deleted successfully"}), 200
+
+# Update NLP prediction
+@prediction_bp.route('/update-nlp-prediction', methods=['PUT'])
+@jwt_required()
+def update_nlp_prediction():
+    data = request.get_json()
+    if not data or 'blockchain_tx_id' not in data:
+        return jsonify({'error': 'Blockchain tx_id is required'}), 400
+
+    blockchain_tx_id = data['blockchain_tx_id']
+
+    # Retrieve the prediction from the database using blockchain_tx_id
+    prediction = mongo.db.NLP_predictions.find_one({'blockchain_tx_id': blockchain_tx_id})
+    if not prediction:
+        return jsonify({'error': 'Prediction not found'}), 404
+
+    # Update the prediction
+    updated_prediction = {**prediction, **data}  # Merge the new data with the existing data
+
+    # Update the database
+    mongo.db.NLP_predictions.update_one(
+        {'blockchain_tx_id': blockchain_tx_id},
+        {'$set': updated_prediction}
+    )
+
+    # If you want to update blockchain, you can do it here using `store_record` (for example, store updated file hash or other data)
+
+    return jsonify({'message': 'Prediction updated successfully'}), 200
+
+
+
+@prediction_bp.route('/uploads/<filename>', methods=['GET'])
+def serve_image(filename):
+    return send_from_directory('uploads', filename)
+
+
+
+@prediction_bp.route('/image-predictions/all', methods=['GET'])
+def get_all_image_predictions():
+    try:
+        records = list(get_mongo_db().Image_predictions.find({}, {'_id': 0}))  # ✅ No email filter
+
+        if not records:
+            return jsonify({'message': 'No image predictions found'}), 404
+
+        for record in records:
+            image_filename = record['image_path'].replace('\\', '/').split('/')[-1]
+            record['image_url'] = f"/uploads/{image_filename}"
+
+        return jsonify({'predictions': records}), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+
+
+

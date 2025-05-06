@@ -1,6 +1,10 @@
 import React, { useRef, useState } from "react";
 import { useDoctorStore } from "../store/useDoctorStore";
-import { predictNlpFromAudio, predictNlpFromText } from "../api/doctorApi";
+import {
+  predictNlpFromAudio,
+  predictNlpFromText,
+  updateNlpPrediction,
+} from "../api/doctorApi";
 import WaveSurfer from "wavesurfer.js";
 import { startAudioRecording } from "../utils/audioRecorder";
 
@@ -46,7 +50,6 @@ export default function Conversation() {
     setAudioBlob(fixedBlob);
     renderWaveform(fixedBlob);
   };
-  
 
   const stopRecording = () => {
     mediaRecorderRef.current?.stop();
@@ -81,18 +84,21 @@ export default function Conversation() {
       recognitionRef.current.stop();
       setListening(false);
     }
-  
+
     if (audioElementRef.current && audioBlob) {
       const audioURL = URL.createObjectURL(audioBlob);
       audioElementRef.current.src = audioURL;
-  
+
       // Revoke URL after audio is loaded to prevent memory leaks
       audioElementRef.current.onloadeddata = () => {
         URL.revokeObjectURL(audioURL);
       };
-  
+
       audioElementRef.current.play().catch((err) => {
-        console.error("Audio playback failed. Possibly due to autoplay restrictions.", err);
+        console.error(
+          "Audio playback failed. Possibly due to autoplay restrictions.",
+          err
+        );
       });
     }
   };
@@ -147,6 +153,40 @@ export default function Conversation() {
     recognitionRef.current?.stop();
     setListening(false);
   };
+
+  // Function to handle saving the AI response
+  const handleSaveResponse = async () => {
+    const updatedResponse = {
+      ...response,
+      results: {
+        ...response.results,
+        Symptoms: symptomsRef.current.value,
+        Diagnosis: diagnosisRef.current.value,
+        Medicines: medicinesRef.current.value,
+        Treatment: treatmentRef.current.value,
+        Notes: notesRef.current.value,
+      },
+    };
+  
+    try {
+      const result = await updateNlpPrediction(
+        response.blockchain_tx_id,
+        updatedResponse,
+        token
+      );
+      setResponse(result);
+      alert("Response updated successfully!");
+    } catch (err) {
+      alert(err?.response?.data?.error || "Failed to save updated response");
+    }
+  };
+  
+
+  const symptomsRef = useRef(null);
+  const diagnosisRef = useRef(null);
+  const medicinesRef = useRef(null);
+  const treatmentRef = useRef(null);
+  const notesRef = useRef(null);
 
   return (
     <div className="bg-white p-6 rounded-lg shadow space-y-6 mt-6">
@@ -230,7 +270,6 @@ export default function Conversation() {
           />
           {/* <audio ref={audioElementRef} hidden controls /> */}
           <audio ref={audioElementRef} controls className="mt-2 w-full" />
-
         </>
       )}
 
@@ -243,15 +282,42 @@ export default function Conversation() {
       {response && (
         <div className="bg-green-50 border border-green-300 rounded p-4 mt-4">
           <h3 className="text-lg font-semibold text-green-700 mb-2">
-            AI Response
+            AI Response (Editable)
           </h3>
           {Object.entries(response).map(([key, value]) =>
             key !== "transcribed_text" ? (
-              <p key={key}>
-                <strong>{key}:</strong> {value}
-              </p>
+              <div key={key} className="mb-2">
+                <label className="block text-sm font-medium text-green-800 mb-1">
+                  {key}
+                </label>
+                {key === "blockchain_tx_id" ? (
+                  <input
+                    type="text"
+                    value={value}
+                    readOnly
+                    className="w-full p-2 border border-green-300 rounded-md bg-gray-100 text-sm text-gray-600 cursor-not-allowed"
+                  />
+                ) : (
+                  <textarea
+                    className="w-full p-2 border border-green-300 rounded-md text-sm"
+                    value={value}
+                    onChange={(e) =>
+                      setResponse((prev) => ({
+                        ...prev,
+                        [key]: e.target.value,
+                      }))
+                    }
+                  />
+                )}
+              </div>
             ) : null
           )}
+          <button
+            onClick={handleSaveResponse}
+            className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition"
+          >
+            Save Changes
+          </button>
         </div>
       )}
     </div>
