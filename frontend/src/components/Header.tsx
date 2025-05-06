@@ -24,7 +24,7 @@ export default function Header() {
 
 
   return (
-    <View className="bg-[#4C8C6B] p-4 rounded-b-3xl h-48">
+    <View className="bg-[#14919B] p-4 rounded-b-3xl h-48">
       {/* Top row */}
       <View className="flex-row justify-between items-center mb-4 pt-10">
         {/* Profile + Welcome */}
@@ -61,13 +61,13 @@ export default function Header() {
 
       {/* Search bar */}
       <View className="flex-row items-center bg-white rounded-full px-4 py-2">
-        <Feather name="sliders" size={18} color="#034C24" />
+        <Feather name="sliders" size={18} color="#14919B" />
         <TextInput
           placeholder="Search..."
           placeholderTextColor="#999"
-          className="flex-1 px-3 text-sm text-[#034C24]"
+          className="flex-1 px-3 text-sm text-[#14919B]"
         />
-        <Ionicons name="search" size={18} color="#034C24" />
+        <Ionicons name="search" size={18} color="#14919B" />
       </View>
       {/* Logout Modal */}
       <Modal
@@ -81,7 +81,7 @@ export default function Header() {
           onPress={() => setModalVisible(false)}
         >
           <View className="bg-white p-6 rounded-t-2xl">
-            <Text className="text-center text-[#034C24] font-semibold text-lg mb-4">
+            <Text className="text-center text-[#14919B] font-semibold text-lg mb-4">
               Do you want to logout?
             </Text>
             <TouchableOpacity
@@ -94,7 +94,7 @@ export default function Header() {
               onPress={() => setModalVisible(false)}
               className="mt-4 items-center"
             >
-              <Text className="text-[#034C24] font-medium">Cancel</Text>
+              <Text className="text-[#14919B] font-medium">Cancel</Text>
             </TouchableOpacity>
           </View>
         </Pressable>

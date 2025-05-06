@@ -16,16 +16,16 @@ export default function splashScreen() {
 
 
     return (
-        <View className="flex-1 items-center justify-center bg-[#4C8C6B]">
+        <View className="flex-1 items-center justify-center bg-[#14919B]">
             <StatusBar barStyle="light-content" translucent backgroundColor="transparent" />
 
             {/* Top Left Rings */}
-            <View className="absolute top-[-80] left-[-80] w-[350px] h-[350px] rounded-full bg-[#3a7055] opacity-30" />
-            <View className="absolute top-[-40] left-[-40] w-[250px] h-[250px] rounded-full bg-[#3a7055] opacity-50" />
+            <View className="absolute top-[-80] left-[-80] w-[350px] h-[350px] rounded-full bg-[#0aae7d] opacity-30" />
+            <View className="absolute top-[-40] left-[-40] w-[250px] h-[250px] rounded-full bg-[#0aae7d] opacity-50" />
 
             {/* Bottom Right Rings */}
-            <View className="absolute bottom-[-80] right-[-80] w-[350px] h-[350px] rounded-full bg-[#3a7055] opacity-30" />
-            <View className="absolute bottom-[-40] right-[-40] w-[250px] h-[250px] rounded-full bg-[#3a7055] opacity-50" />
+            <View className="absolute bottom-[-80] right-[-80] w-[350px] h-[350px] rounded-full bg-[#0aae7d] opacity-30" />
+            <View className="absolute bottom-[-40] right-[-40] w-[250px] h-[250px] rounded-full bg-[#0aae7d] opacity-50" />
 
             {/* Animated Logo + Text */}
             <Animated.View entering={FadeIn.duration(800)} className="items-center ">

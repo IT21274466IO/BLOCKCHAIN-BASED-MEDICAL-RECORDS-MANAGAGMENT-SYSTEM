@@ -21,12 +21,12 @@ export default function AppointmentCard({ name, specialty, hospital, contact, im
         <View className="flex-row items-center space-x-4 gap-5">
           {image && <Image source={image} className="w-14 h-14 rounded-full" />}
           <View className="flex-1">
-            <Text className="font-bold text-[#034C24]">{name}</Text>
+            <Text className="font-bold text-[#14919B]">{name}</Text>
             <Text className="text-xs text-gray-600 mt-1">🩺   {specialty}</Text>
             <Text className="text-xs text-gray-600 mt-1">🏥   {hospital}</Text>
             {contact && (
               <TouchableOpacity className="mt-2" onPress={() => console.log(`Call ${contact}`)}>
-                <Text className="text-xs text-[#034C24]">📞   {contact}</Text>
+                <Text className="text-xs text-[#14919B]">📞   {contact}</Text>
               </TouchableOpacity>
             )}
           </View>

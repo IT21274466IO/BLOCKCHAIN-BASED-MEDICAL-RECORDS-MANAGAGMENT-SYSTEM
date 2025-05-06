@@ -14,11 +14,11 @@ export default function home() {
 
             {/* Top Left Rings */}
             <View className="absolute top-[-80] left-[-80] w-[250px] h-[350px] rounded-full bg-[#4C8C6B] opacity-30" />
-            <View className="absolute top-[-40] left-[-40] w-[150px] h-[250px] rounded-full bg-[#9A9F17] opacity-20" />
+            <View className="absolute top-[-40] left-[-40] w-[150px] h-[250px] rounded-full bg-[#14919B] opacity-20" />
 
             {/* Bottom Right Rings */}
             <View className="absolute bottom-[-150] right-[-180] w-[350px] h-[350px] rounded-full bg-[#4C8C6B] opacity-30" />
-            <View className="absolute bottom-[-90] right-[-130] w-[250px] h-[250px] rounded-full bg-[#9A9F17] opacity-20" />
+            <View className="absolute bottom-[-90] right-[-130] w-[250px] h-[250px] rounded-full bg-[#14919B] opacity-20" />
 
             {/* Header */}
             <Header />
@@ -34,21 +34,22 @@ export default function home() {
             <Animated.View entering={FadeInUp.delay(400).duration(700)} className="mt-10 space-y-4 p-5">
                 <TouchableOpacity
                     onPress={() => router.push('/identify')}
-                    className="bg-[#E9FFF5] border border-[#9A9F17] rounded-3xl py-4 items-center mb-6"
+                    className="bg-[#29d3ba] border border-[#14919B] rounded-3xl py-4 items-center mb-6"
                 >
                     <Text className="text-[#034C24] font-semibold text-base">Image Identification</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
                     onPress={() => router.push('/symptoms')}
-                    className="bg-[#E9FFF5] border border-[#9A9F17] rounded-3xl py-4 items-center mb-6"
+                    className="bg-[#29d3ba] border border-[#14919B] rounded-3xl py-4 items-center mb-6"
                 >
                     <Text className="text-[#034C24] font-semibold text-base">Symptoms Identification</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
+                
                     onPress={() => router.push('/riskscreen')}
-                    className="bg-[#E9FFF5] border border-[#9A9F17] rounded-3xl py-4 items-center"
+                    className="bg-[#29d3ba] border border-[#14919B] rounded-3xl py-4 items-center"
                 >
                     <Text className="text-[#034C24] font-semibold text-base">Risk Analysis</Text>
                 </TouchableOpacity>

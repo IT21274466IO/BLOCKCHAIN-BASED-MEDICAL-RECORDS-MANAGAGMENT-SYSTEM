@@ -26,12 +26,12 @@ export default function login() {
 
             {/* Back Button */}
             <TouchableOpacity onPress={() => router.back()} className="mb-4">
-                <Ionicons name="arrow-back" size={24} color="#4C8C6B" />
+                <Ionicons name="arrow-back" size={24} color="#14919B" />
             </TouchableOpacity>
 
             {/* Header */}
-            <Text className="text-center text-xl font-extrabold text-[#034C24] mb-2">LOG IN</Text>
-            <Text className="text-xl font-bold text-[#034C24] mb-5">Welcome</Text>
+            <Text className="text-center text-xl font-extrabold text-[#14919B] mb-2">LOG IN</Text>
+            <Text className="text-xl font-bold text-[#14919B] mb-5">Welcome</Text>
             <Text className="text-sm text-gray-500 mb-6">
                 Log in to access your appointments, manage your health records, and connect with doctors anytime, anywhere.
             </Text>
@@ -46,7 +46,7 @@ export default function login() {
 
                         {/* Email or Phone */}
                         <View>
-                            <Text className="font-semibold mb-1 text-[#034C24]">Email or Mobile Number</Text>
+                            <Text className="font-semibold mb-1 text-[#14919B]">Email or Mobile Number</Text>
                             <TextInput
                                 className="bg-[#E9FFF5] rounded-lg px-4 py-3 text-sm mb-6"
                                 placeholder="example@example.com"
@@ -58,7 +58,7 @@ export default function login() {
 
                         {/* Password */}
                         <View>
-                            <Text className="font-semibold mb-1 text-[#034C24]">Password</Text>
+                            <Text className="font-semibold mb-1 text-[#14919B]">Password</Text>
                             <View className="flex-row items-center bg-[#E9FFF5] rounded-lg px-4">
                                 <TextInput
                                     className="flex-1 py-3 text-sm"
@@ -73,7 +73,7 @@ export default function login() {
                                 </TouchableOpacity>
                             </View>
                             <TouchableOpacity onPress={() => router.push('/setPassword')} className="mt-5 self-end">
-                                <Text className="text-sm text-[#034C24] font-semibold">Forget Password</Text>
+                                <Text className="text-sm text-[#14919B] font-semibold">Forget Password</Text>
                             </TouchableOpacity>
                         </View>
 
@@ -81,7 +81,7 @@ export default function login() {
                         <TouchableOpacity
                             onPress={handleSubmit as any}
                             disabled={loading}
-                            className="bg-[#4C8C6B] py-3 rounded-full items-center mt-8"
+                            className="bg-[#14919B] py-3 rounded-full items-center mt-8"
                         >
                             <Text className="text-white font-semibold text-base">{loading ? 'Logging in...' : 'Log In'}</Text>
                         </TouchableOpacity>
@@ -101,7 +101,7 @@ export default function login() {
             <View className="flex-row justify-center mt-6">
                 <Text className="text-gray-500">Don’t have an account?</Text>
                 <TouchableOpacity onPress={() => router.push('/signup')}>
-                    <Text className="text-[#4C8C6B] font-semibold ml-2">Sign Up</Text>
+                    <Text className="text-[#14919B] font-semibold ml-2">Sign Up</Text>
                 </TouchableOpacity>
             </View>
         </ScrollView>

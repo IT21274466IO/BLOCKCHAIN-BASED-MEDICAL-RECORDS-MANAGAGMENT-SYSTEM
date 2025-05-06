@@ -24,11 +24,11 @@ export default function signup() {
       
     {/* Back Button */}
     <TouchableOpacity onPress={() => router.back()} className="mb-4">
-      <Ionicons name="arrow-back" size={24} color="#4C8C6B" />
+      <Ionicons name="arrow-back" size={24} color="#14919B" />
     </TouchableOpacity>
 
     {/* Header */}
-    <Text className="text-center text-2xl font-extrabold text-[#4C8C6B] mb-6">Create Account</Text>
+    <Text className="text-center text-2xl font-extrabold text-[#14919B] mb-6">Create Account</Text>
 
     <Formik
       initialValues={{ fullName: '', password: '', email: '', phone: '', dob: '' }}
@@ -39,7 +39,7 @@ export default function signup() {
         <View className="space-y-4">
           {/* Full Name */}
           <View>
-            <Text className="font-semibold mb-1 text-[#034C24]">Full name</Text>
+            <Text className="font-semibold mb-1 text-[#14919B]">Full name</Text>
             <TextInput
               className="bg-[#E9FFF5] rounded-lg px-4 py-3 text-sm mb-5"
               placeholder="John Doe"
@@ -54,7 +54,7 @@ export default function signup() {
 
           {/* Password */}
           <View>
-            <Text className="font-semibold mb-1 text-[#034C24]">Password</Text>
+            <Text className="font-semibold mb-1 text-[#14919B]">Password</Text>
             <View className="flex-row items-center bg-[#E9FFF5] rounded-lg px-4 mb-5">
               <TextInput
                 className="flex-1 py-3 text-sm"
@@ -75,7 +75,7 @@ export default function signup() {
 
           {/* Email */}
           <View>
-            <Text className="font-semibold mb-1 text-[#034C24]">Email</Text>
+            <Text className="font-semibold mb-1 text-[#14919B]">Email</Text>
             <TextInput
               className="bg-[#E9FFF5] rounded-lg px-4 py-3 text-sm mb-5"
               placeholder="example@email.com"
@@ -90,7 +90,7 @@ export default function signup() {
 
           {/* Phone */}
           <View>
-            <Text className="font-semibold mb-1 text-[#034C24]">Mobile Number</Text>
+            <Text className="font-semibold mb-1 text-[#14919B]">Mobile Number</Text>
             <TextInput
               className="bg-[#E9FFF5] rounded-lg px-4 py-3 text-sm mb-5"
               placeholder="+94 70 123 4567"
@@ -105,7 +105,7 @@ export default function signup() {
 
           {/* DOB */}
           <View>
-            <Text className="font-semibold mb-1 text-[#034C24]">Date Of Birth</Text>
+            <Text className="font-semibold mb-1 text-[#14919B]">Date Of Birth</Text>
             <TextInput
               className="bg-[#E9FFF5] rounded-lg px-4 py-3 text-sm"
               placeholder="DD / MM / YYYY"
@@ -128,7 +128,7 @@ export default function signup() {
           {/* Sign Up Button */}
           <TouchableOpacity
             onPress={handleSubmit as any}
-            className="bg-[#4C8C6B] py-3 rounded-full items-center mt-5"
+            className="bg-[#14919B] py-3 rounded-full items-center mt-5"
           >
             <Text className="text-white font-semibold text-base">Sign Up</Text>
           </TouchableOpacity>
@@ -148,7 +148,7 @@ export default function signup() {
     <View className="flex-row justify-center mt-6">
       <Text className="text-gray-500">Already have an account?</Text>
       <TouchableOpacity onPress={() => router.push('/login')}>
-        <Text className="text-[#4C8C6B] font-semibold ml-3">Log in</Text>
+        <Text className="text-[#14919B] font-semibold ml-3">Log in</Text>
       </TouchableOpacity>
     </View>
   </ScrollView>

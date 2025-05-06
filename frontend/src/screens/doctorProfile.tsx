@@ -55,12 +55,12 @@ export default function DoctorProfile() {
       <ScrollView className="bg-white px-4 pt-5">
         {/* Back Button */}
         <TouchableOpacity onPress={() => router.back()} className="">
-          <Ionicons name="arrow-back" size={24} color="#034C24" />
+          <Ionicons name="arrow-back" size={24} color="#14919B" />
         </TouchableOpacity>
 
         <Animated.View entering={FadeInUp.duration(600)}>
           {/* Header */}
-          <Text className="text-center text-xl font-bold text-[#034C24] mb-4">Schedule</Text>
+          <Text className="text-center text-xl font-bold text-[#14919B] mb-4">Schedule</Text>
 
           {/* Profile Card */}
           <View className="items-center bg-[#E9FFF5] rounded-2xl p-4">
@@ -68,7 +68,7 @@ export default function DoctorProfile() {
               source={doctor?.image || require('../assets/avatar.jpg')}
               className="w-32 h-32 rounded-full mb-3"
             />
-            <Text className="text-lg font-bold text-[#034C24]">{doctor?.name}</Text>
+            <Text className="text-lg font-bold text-[#14919B]">{doctor?.name}</Text>
             <Text className="text-sm text-gray-500">{doctor?.specialty}</Text>
 
             {/* Stats */}
@@ -77,18 +77,18 @@ export default function DoctorProfile() {
           </View>
 
           {/* Profile Text */}
-          <Text className="text-[#034C24] font-bold mt-6 mb-2">Profile</Text>
+          <Text className="text-[#14919B] font-bold mt-6 mb-2">Profile</Text>
           <Text className="text-sm text-gray-600 leading-5">
             {doctor?.description || 'No profile description available.'}
           </Text>
 
           {/* Calendar Section */}
-          <Text className="text-[#034C24] font-bold mt-6 mb-5 text-center">📅 Select Appointment Date</Text>
+          <Text className="text-[#14919B] font-bold mt-6 mb-5 text-center">📅 Select Appointment Date</Text>
 
           {/* Weekday Headers */}
           <View className="flex-row justify-between mb-2 px-2">
             {daysOfWeek.map((day) => (
-              <Text key={day} className="text-xs font-semibold text-[#034C24]">
+              <Text key={day} className="text-xs font-semibold text-[#14919B]">
                 {day}
               </Text>
             ))}
@@ -100,7 +100,7 @@ export default function DoctorProfile() {
               <View
                 key={num}
                 className={`w-[13%] aspect-square m-1 rounded-full items-center justify-center ${
-                  selectedDay === num ? 'bg-[#4C8C6B]' : 'bg-[#E9FFF5] opacity-40'
+                  selectedDay === num ? 'bg-[#14919B]' : 'bg-[#E9FFF5] opacity-40'
                 }`}
               >
                 <Text className={`text-sm ${selectedDay === num ? 'text-white' : 'text-gray-400'}`}>
@@ -113,7 +113,7 @@ export default function DoctorProfile() {
       </ScrollView>
 
       <TouchableOpacity
-        className="bg-[#4C8C6B] m-5 p-4 rounded-full items-center"
+        className="bg-[#14919B] m-5 p-4 rounded-full items-center"
         onPress={handleAppointmentSubmit}
       >
         <Text className="text-white text-base font-bold"> Receive Appointment</Text>

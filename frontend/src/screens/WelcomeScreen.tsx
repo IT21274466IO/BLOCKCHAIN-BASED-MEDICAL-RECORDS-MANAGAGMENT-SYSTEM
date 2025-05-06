@@ -26,7 +26,7 @@ export default function WelcomeScreen() {
         {/* Sign Up Button */}
         <TouchableOpacity
           onPress={() => router.push('/signup')}
-          className="bg-[#4C8C6B] px-10 py-3 rounded-full mt-20"
+          className="bg-[#14919B] px-10 py-3 rounded-full mt-20"
         >
           <Text className="text-white font-semibold text-base">Sign Up</Text>
         </TouchableOpacity>
@@ -35,7 +35,7 @@ export default function WelcomeScreen() {
         <View className="flex-row space-x-1 mt-8">
           <Text className="text-gray-500">Already have an account?</Text>
           <TouchableOpacity onPress={() => router.push('/login')}>
-            <Text className="text-[#4C8C6B] font-semibold ml-3">Log In</Text>
+            <Text className="text-[#14919B] font-semibold ml-3">Log In</Text>
           </TouchableOpacity>
         </View>
       </Animated.View>
