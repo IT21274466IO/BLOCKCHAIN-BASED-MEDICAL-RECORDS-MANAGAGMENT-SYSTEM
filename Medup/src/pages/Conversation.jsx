@@ -195,6 +195,26 @@ export default function Conversation() {
       );
       setResponse(result); // Set the updated response
       alert("Response updated successfully!");
+
+      // 🧹 Clear all input fields and response state
+      setResponse(null);
+      setTranscript("");
+      setSymptoms("");
+      setDiagnosis("");
+      setMedicines("");
+      setTreatment("");
+      setNotes("");
+      setTextInput("");
+      setAudioBlob(null);
+
+      // Also clear waveform and audio preview if shown
+      if (waveSurfer.current) {
+        waveSurfer.current.destroy();
+        waveSurfer.current = null;
+      }
+      if (audioElementRef.current) {
+        audioElementRef.current.src = "";
+      }
     } catch (err) {
       alert(err?.response?.data?.error || "Failed to save updated response");
     }
