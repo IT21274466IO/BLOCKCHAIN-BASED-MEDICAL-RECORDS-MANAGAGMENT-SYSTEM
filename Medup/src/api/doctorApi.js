@@ -114,7 +114,7 @@ export const deleteNlpPrediction = async (blockchainTxId, token) => {
 export const updateNlpPrediction = async (blockchain_tx_id, updatedResponse, token) => {
   try {
     const res = await axios.put(
-      `${API_BASE}/predict/update-nlp-prediction`,
+      `${API_BASE}/predict/nlp-update`,
       { blockchain_tx_id, ...updatedResponse },
       {
         headers: {
