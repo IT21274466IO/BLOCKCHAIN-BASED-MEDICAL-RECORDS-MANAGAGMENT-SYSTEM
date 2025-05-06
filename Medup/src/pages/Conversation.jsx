@@ -43,8 +43,6 @@ export default function Conversation() {
       setNotes(response.Notes || "");
     }
   }, [response]); // Trigger this whenever the 'response' changes
-   
-  
 
   const renderWaveform = (urlOrBlob) => {
     if (waveSurfer.current) waveSurfer.current.destroy();
@@ -175,30 +173,32 @@ export default function Conversation() {
     setListening(false);
   };
 
-// Function to handle saving the AI response
-const handleSaveResponse = async () => {
-  const updatedResponse = {
-    blockchain_tx_id: response.blockchain_tx_id, // Correctly pass blockchain_tx_id
-    updated_results: {
-      Symptoms: symptoms, // Use the updated state values
-      Diagnosis: diagnosis,
-      Medicines: medicines,
-      Treatment: treatment,
-      Notes: notes,
-    },
+  // Function to handle saving the AI response
+  const handleSaveResponse = async () => {
+    const updatedResponse = {
+      blockchain_tx_id: response.blockchain_tx_id, // Correctly pass blockchain_tx_id
+      updated_results: {
+        Symptoms: symptoms, // Use the updated state values
+        Diagnosis: diagnosis,
+        Medicines: medicines,
+        Treatment: treatment,
+        Notes: notes,
+      },
+    };
+
+    try {
+      // Send the PUT request to the backend API to update the response
+      const result = await updateNlpPrediction(
+        response.blockchain_tx_id,
+        updatedResponse,
+        token
+      );
+      setResponse(result); // Set the updated response
+      alert("Response updated successfully!");
+    } catch (err) {
+      alert(err?.response?.data?.error || "Failed to save updated response");
+    }
   };
-
-  try {
-    // Send the PUT request to the backend API to update the response
-    const result = await updateNlpPrediction(response.blockchain_tx_id, updatedResponse, token);
-    setResponse(result); // Set the updated response
-    alert("Response updated successfully!");
-  } catch (err) {
-    alert(err?.response?.data?.error || "Failed to save updated response");
-  }
-};
-
-  
 
   return (
     <div className="bg-white p-6 rounded-lg shadow space-y-6 mt-6">
@@ -216,7 +216,7 @@ const handleSaveResponse = async () => {
         />
         <button
           type="submit"
-          className="px-6 py-2 bg-[#087f5b] text-white rounded-full hover:bg-green-800 transition"
+          className="px-6 py-2 bg-[#14919B] text-white rounded-full hover:bg-[#087f5b] transition"
         >
           Text Analyze
         </button>
@@ -265,7 +265,7 @@ const handleSaveResponse = async () => {
 
         <button
           onClick={handleUpload}
-          className="px-8 py-2 bg-[#087f5b] text-white hover:bg-green-800 transition rounded-full"
+          className="px-8 py-2 bg-[#14919B] text-white hover:bg-[#087f5b] transition rounded-full"
         >
           Voice Analyze
         </button>
@@ -290,82 +290,80 @@ const handleSaveResponse = async () => {
         </div>
       )}
 
-{response && (
-  <div className="bg-green-50 border border-green-300 rounded p-4 mt-4">
-    <h3 className="text-lg font-semibold text-green-700 mb-2">
-      AI Response (Editable)
-    </h3>
+      {response && (
+        <div className="bg-green-50 border border-green-300 rounded p-4 mt-4">
+          <h3 className="text-lg font-semibold text-green-700 mb-2">
+            AI Response (Editable)
+          </h3>
 
-    {/* Symptoms Textarea */}
-    <div className="mb-2">
-      <label className="block text-sm font-medium text-green-800 mb-1">
-        Symptoms
-      </label>
-      <textarea
-        value={symptoms} // State bound here
-        onChange={(e) => setSymptoms(e.target.value)} // Update state on change
-        className="w-full mt-2 border p-2 rounded-md"
-      />
-    </div>
+          {/* Symptoms Textarea */}
+          <div className="mb-2">
+            <label className="block text-sm font-medium text-green-800 mb-1">
+              Symptoms
+            </label>
+            <textarea
+              value={symptoms} // State bound here
+              onChange={(e) => setSymptoms(e.target.value)} // Update state on change
+              className="w-full mt-2 border p-2 rounded-md"
+            />
+          </div>
 
-    {/* Diagnosis Textarea */}
-    <div className="mb-2">
-      <label className="block text-sm font-medium text-green-800 mb-1">
-        Diagnosis
-      </label>
-      <textarea
-        value={diagnosis} // State bound here
-        onChange={(e) => setDiagnosis(e.target.value)} // Update state on change
-        className="w-full mt-2 border p-2 rounded-md"
-      />
-    </div>
+          {/* Diagnosis Textarea */}
+          <div className="mb-2">
+            <label className="block text-sm font-medium text-green-800 mb-1">
+              Diagnosis
+            </label>
+            <textarea
+              value={diagnosis} // State bound here
+              onChange={(e) => setDiagnosis(e.target.value)} // Update state on change
+              className="w-full mt-2 border p-2 rounded-md"
+            />
+          </div>
 
-    {/* Medicines Textarea */}
-    <div className="mb-2">
-      <label className="block text-sm font-medium text-green-800 mb-1">
-        Medicines
-      </label>
-      <textarea
-        value={medicines} // State bound here
-        onChange={(e) => setMedicines(e.target.value)} // Update state on change
-        className="w-full mt-2 border p-2 rounded-md"
-      />
-    </div>
+          {/* Medicines Textarea */}
+          <div className="mb-2">
+            <label className="block text-sm font-medium text-green-800 mb-1">
+              Medicines
+            </label>
+            <textarea
+              value={medicines} // State bound here
+              onChange={(e) => setMedicines(e.target.value)} // Update state on change
+              className="w-full mt-2 border p-2 rounded-md"
+            />
+          </div>
 
-    {/* Treatment Textarea */}
-    <div className="mb-2">
-      <label className="block text-sm font-medium text-green-800 mb-1">
-        Treatment
-      </label>
-      <textarea
-        value={treatment} // State bound here
-        onChange={(e) => setTreatment(e.target.value)} // Update state on change
-        className="w-full mt-2 border p-2 rounded-md"
-      />
-    </div>
+          {/* Treatment Textarea */}
+          <div className="mb-2">
+            <label className="block text-sm font-medium text-green-800 mb-1">
+              Treatment
+            </label>
+            <textarea
+              value={treatment} // State bound here
+              onChange={(e) => setTreatment(e.target.value)} // Update state on change
+              className="w-full mt-2 border p-2 rounded-md"
+            />
+          </div>
 
-    {/* Notes Textarea */}
-    <div className="mb-2">
-      <label className="block text-sm font-medium text-green-800 mb-1">
-        Notes
-      </label>
-      <textarea
-        value={notes} // State bound here
-        onChange={(e) => setNotes(e.target.value)} // Update state on change
-        className="w-full mt-2 border p-2 rounded-md"
-      />
-    </div>
+          {/* Notes Textarea */}
+          <div className="mb-2">
+            <label className="block text-sm font-medium text-green-800 mb-1">
+              Notes
+            </label>
+            <textarea
+              value={notes} // State bound here
+              onChange={(e) => setNotes(e.target.value)} // Update state on change
+              className="w-full mt-2 border p-2 rounded-md"
+            />
+          </div>
 
-    <button
-      onClick={handleSaveResponse}
-      className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition"
-    >
-      Save Changes
-    </button>
-  </div>
-)}
-
-
+          <button
+            onClick={handleSaveResponse}
+            className="mt-4 px-6 py-2 bg-[#14919B] text-white rounded-full hover:bg-[#183253] transition"
+          >
+            Save Changes
+          </button>
+        </div>
+      )}
     </div>
   );
 }
