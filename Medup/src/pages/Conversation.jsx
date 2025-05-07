@@ -7,6 +7,8 @@ import {
 } from "../api/doctorApi";
 import WaveSurfer from "wavesurfer.js";
 import { startAudioRecording } from "../utils/audioRecorder";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -176,9 +178,9 @@ export default function Conversation() {
   // Function to handle saving the AI response
   const handleSaveResponse = async () => {
     const updatedResponse = {
-      blockchain_tx_id: response.blockchain_tx_id, // Correctly pass blockchain_tx_id
+      blockchain_tx_id: response.blockchain_tx_id,
       updated_results: {
-        Symptoms: symptoms, // Use the updated state values
+        Symptoms: symptoms,
         Diagnosis: diagnosis,
         Medicines: medicines,
         Treatment: treatment,
@@ -194,34 +196,56 @@ export default function Conversation() {
         token
       );
       setResponse(result); // Set the updated response
-      alert("Response updated successfully!");
 
-      // 🧹 Clear all input fields and response state
-      setResponse(null);
-      setTranscript("");
-      setSymptoms("");
-      setDiagnosis("");
-      setMedicines("");
-      setTreatment("");
-      setNotes("");
-      setTextInput("");
-      setAudioBlob(null);
+      // Show success toast message
+      toast.success("Record saved successfully!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
 
-      // Also clear waveform and audio preview if shown
-      if (waveSurfer.current) {
-        waveSurfer.current.destroy();
-        waveSurfer.current = null;
-      }
-      if (audioElementRef.current) {
-        audioElementRef.current.src = "";
-      }
+      // 🧹 Clear all input fields and response state after delay
+      setTimeout(() => {
+        setResponse(null);
+        setTranscript("");
+        setSymptoms("");
+        setDiagnosis("");
+        setMedicines("");
+        setTreatment("");
+        setNotes("");
+        setTextInput("");
+        setAudioBlob(null);
+
+        // Also clear waveform and audio preview if shown
+        if (waveSurfer.current) {
+          waveSurfer.current.destroy();
+          waveSurfer.current = null;
+        }
+        if (audioElementRef.current) {
+          audioElementRef.current.src = "";
+        }
+      }, 200); // Delay clearing the form state by 1 second
     } catch (err) {
-      alert(err?.response?.data?.error || "Failed to save updated response");
+      toast.error(
+        err?.response?.data?.error || "Failed to save the record",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
     }
   };
 
   return (
     <div className="bg-white p-6 rounded-lg shadow space-y-6 mt-6">
+      <ToastContainer />
       <h2 className="text-xl font-bold text-gray-800">
         Doctor Conversation Assistant
       </h2>
