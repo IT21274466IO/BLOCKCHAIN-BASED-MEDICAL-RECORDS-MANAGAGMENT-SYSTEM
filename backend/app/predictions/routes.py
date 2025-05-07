@@ -345,13 +345,11 @@ def get_all_nlp_predictions():
 def delete_nlp_prediction(blockchain_tx_id):
     email = get_jwt_identity()  # Get the email of the authenticated user (doctor)
 
-    # Find the record in the database using blockchain_tx_id and email
     record = mongo.db.NLP_predictions.find_one({"blockchain_tx_id": blockchain_tx_id, "email": email})
 
     if not record:
         return jsonify({"message": "Prediction not found or unauthorized"}), 404
 
-    # Perform the deletion
     mongo.db.NLP_predictions.delete_one({"blockchain_tx_id": blockchain_tx_id, "email": email})
 
     return jsonify({"message": "Prediction deleted successfully"}), 200
@@ -364,26 +362,21 @@ def delete_nlp_prediction(blockchain_tx_id):
 @prediction_bp.route('/nlp-update', methods=['PUT'])
 @jwt_required()
 def update_nlp_prediction():
-    # Get the current user's email from JWT
     email = get_jwt_identity()
     
-    # Get the data from the request
     data = request.get_json()
     
-    # Check if necessary fields are in the request data
     if not data or 'blockchain_tx_id' not in data or 'updated_results' not in data:
         return jsonify({'error': 'blockchain_tx_id and updated_results are required'}), 400
     
     blockchain_tx_id = data['blockchain_tx_id']
     updated_results = data['updated_results']
     
-    # Find the document by blockchain_tx_id
     nlp_record = mongo.db.NLP_predictions.find_one({'blockchain_tx_id': blockchain_tx_id, 'email': email})
     
     if not nlp_record:
         return jsonify({'error': 'No record found with this blockchain_tx_id for the current user'}), 404
     
-    # Update the results in the database
     updated_document = {
         "results": updated_results,
         "timestamp": str(datetime.utcnow())
@@ -408,7 +401,7 @@ def serve_image(filename):
 @prediction_bp.route('/image-predictions/all', methods=['GET'])
 def get_all_image_predictions():
     try:
-        records = list(get_mongo_db().Image_predictions.find({}, {'_id': 0}))  # ✅ No email filter
+        records = list(get_mongo_db().Image_predictions.find({}, {'_id': 0}))
 
         if not records:
             return jsonify({'message': 'No image predictions found'}), 404

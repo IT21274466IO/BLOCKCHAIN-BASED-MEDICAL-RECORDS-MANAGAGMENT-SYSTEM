@@ -4,6 +4,8 @@ import { useDoctorStore } from "../store/useDoctorStore";
 import {
     TrashIcon,
   } from "@heroicons/react/24/outline";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function MedicalRecords() {
   const token = useDoctorStore((state) => state.token);
@@ -48,12 +50,31 @@ export default function MedicalRecords() {
   const handleDelete = async () => {
     try {
       const data = await deleteNlpPrediction(selectedRecordId, token);
-      alert(data.message);  // Optional: Show success message
       setRecords(records.filter((record) => record.blockchain_tx_id !== selectedRecordId));  // Remove record from the UI
       setShowModal(false);  // Close the modal after deletion
+
+      // Show success toast message
+            toast.warning("Record deleted successfully!", {
+              position: "top-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+            });
     } catch (err) {
-      alert(err?.response?.data?.message || "Failed to delete prediction.");
       setShowModal(false); // Close the modal if the deletion failed
+      toast.error(
+              err?.response?.data?.error || "Failed to save the record",
+              {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+              }
+            );
     }
   };
 
@@ -70,10 +91,11 @@ export default function MedicalRecords() {
 
   return (
     <div className="p-6">
+      <ToastContainer />
       <h2 className="text-2xl font-bold text-gray-800 mb-4">My Medical Records</h2>
 
       {loading ? (
-        <p className="text-gray-600">Loading predictions...</p>
+        <p className="text-gray-600">Loading Records...</p>
       ) : error ? (
         <p className="text-red-600">{error}</p>
       ) : records.length === 0 ? (
@@ -83,7 +105,7 @@ export default function MedicalRecords() {
           {records.map((record, idx) => (
             <div
               key={idx}
-              className="bg-white border border-gray-200 rounded-lg shadow p-4 space-y-2"
+              className="bg-[#defcf6] border border-gray-200 rounded-lg shadow p-4 space-y-2"
             >
               <div className="text-sm text-gray-500">{new Date(record.timestamp).toLocaleString()}</div>
               {/* <p><strong>Input Type:</strong> {record.input_type}</p> */}
@@ -145,20 +167,22 @@ export default function MedicalRecords() {
       {showModal && (
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-transparent backdrop-blur-sm bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">Are you sure you want to delete this prediction?</h3>
+            <h3 className="text-xl font-semibold text-gray-800 mb-4">Are you sure you want to delete this Record?</h3>
             <div className="flex justify-end gap-4">
+            <button
+                onClick={handleDelete}
+                className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+              >
+                Delete
+              </button>
+
               <button
                 onClick={closeModal}
                 className="px-6 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
               >
                 Cancel
               </button>
-              <button
-                onClick={handleDelete}
-                className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
-              >
-                Delete
-              </button>
+              
             </div>
           </div>
         </div>
