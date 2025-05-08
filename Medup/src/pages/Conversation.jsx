@@ -101,6 +101,39 @@ export default function Conversation() {
     }
   };
 
+  const translateSinhalaToEnglish = async (text) => {
+    const apiKey = "YOUR_GOOGLE_API_KEY"; // Replace with your Google API Key
+
+    // The Google Translate API endpoint
+    const endpoint = `https://translation.googleapis.com/language/translate/v2`;
+
+    try {
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          q: text,
+          source: "si", // Source language: Sinhala
+          target: "en", // Target language: English
+          key: apiKey,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (data.error) {
+        throw new Error(data.error.message);
+      }
+
+      return data.data.translations[0].translatedText; // Return translated text
+    } catch (error) {
+      console.error("Translation error:", error);
+      return null;
+    }
+  };
+
   //handle audio preview
   const handlePreview = () => {
     if (recognitionRef.current && listening) {
@@ -131,7 +164,25 @@ export default function Conversation() {
     e.preventDefault();
     if (!textInput.trim()) return;
     try {
-      const result = await predictNlpFromText(textInput, token);
+      let inputForPrediction = textInput;
+
+      // If the current language is Sinhala, translate it to English
+      if (language === "si-LK") {
+        inputForPrediction = await translateSinhalaToEnglish(textInput);
+        if (!inputForPrediction) {
+          toast.error("Failed to translate the Sinhala input", {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+          });
+          return;
+        }
+      }
+
+      const result = await predictNlpFromText(inputForPrediction, token);
       console.log("Backend response:", result);
       setResponse(result);
     } catch (err) {
