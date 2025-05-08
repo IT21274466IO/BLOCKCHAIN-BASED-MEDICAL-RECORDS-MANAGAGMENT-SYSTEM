@@ -50,6 +50,7 @@ export default function MedicalRecords() {
   const handleDelete = async () => {
     try {
       const data = await deleteNlpPrediction(selectedRecordId, token);
+      console.log(data);
       setRecords(records.filter((record) => record.blockchain_tx_id !== selectedRecordId));  // Remove record from the UI
       setShowModal(false);  // Close the modal after deletion
 

@@ -9,6 +9,7 @@ import WaveSurfer from "wavesurfer.js";
 import { startAudioRecording } from "../utils/audioRecorder";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { LanguageIcon } from "@heroicons/react/24/outline";
 
 const SpeechRecognition =
   window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -33,6 +34,8 @@ export default function Conversation() {
   const [medicines, setMedicines] = useState("");
   const [treatment, setTreatment] = useState("");
   const [notes, setNotes] = useState("");
+
+  const [language, setLanguage] = useState("en-US"); // Default to English
 
   useEffect(() => {
     console.log("AI Response:", response);
@@ -145,7 +148,7 @@ export default function Conversation() {
     recognitionRef.current = new SpeechRecognition();
     recognitionRef.current.continuous = true;
     recognitionRef.current.interimResults = true;
-    recognitionRef.current.lang = "en-US";
+    recognitionRef.current.lang = language;
 
     recognitionRef.current.onresult = (event) => {
       let finalTranscript = "";
@@ -229,17 +232,14 @@ export default function Conversation() {
         }
       }, 200); // Delay clearing the form state by 1 second
     } catch (err) {
-      toast.error(
-        err?.response?.data?.error || "Failed to save the record",
-        {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-        }
-      );
+      toast.error(err?.response?.data?.error || "Failed to save the record", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
     }
   };
 
@@ -249,6 +249,19 @@ export default function Conversation() {
       <h2 className="text-xl font-bold text-gray-800">
         Doctor Conversation Assistant
       </h2>
+
+      <button
+        onClick={() =>
+          setLanguage((prev) => (prev === "en-US" ? "si-LK" : "en-US"))
+        }
+        className="px-4 py-2 bg-[#14919B] text-white rounded hover:bg-[#066f78] transition"
+      >
+        <LanguageIcon />
+        {language === "en-US" ? "English" : "සිංහල"}
+      </button>
+      <p className="text-sm text-gray-600 mt-2">
+        🎧 Listening in: {language === "en-US" ? "English" : "සිංහල"}
+      </p>
 
       <form onSubmit={handleTextSubmit} className="flex gap-4 items-center">
         <textarea
