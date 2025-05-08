@@ -46,7 +46,7 @@ function ImagePredictions() {
               className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
             >
               <img
-                src={`http://127.0.0.1:5000${prediction.image_url}`}
+                src={`http://127.0.0.1:5000/predict${prediction.image_url}`}
                 alt={prediction.predicted_class}
                 className="w-full h-64 object-cover"
               />

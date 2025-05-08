@@ -34,7 +34,8 @@ def get_mongo_db():
     return mongo.db
 
 
-UPLOAD_FOLDER = 'uploads'
+# UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
 
@@ -391,13 +392,6 @@ def update_nlp_prediction():
 
 
 
-
-@prediction_bp.route('/uploads/<filename>', methods=['GET'])
-def serve_image(filename):
-    return send_from_directory('uploads', filename)
-
-
-
 @prediction_bp.route('/image-predictions/all', methods=['GET'])
 def get_all_image_predictions():
     try:
@@ -416,6 +410,10 @@ def get_all_image_predictions():
         return jsonify({'error': str(e)}), 500
 
 
+
+@prediction_bp.route('/uploads/<path:filename>', methods=['GET'])
+def serve_uploaded_file(filename):
+    return send_from_directory(UPLOAD_FOLDER, filename)
 
 
 
