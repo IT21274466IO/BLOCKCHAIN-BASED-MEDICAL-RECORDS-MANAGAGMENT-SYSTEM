@@ -162,7 +162,25 @@ export default function Conversation() {
   //handle text prediction
   const handleTextSubmit = async (e) => {
     e.preventDefault();
-    if (!textInput.trim()) return;
+
+    const wordCount = textInput.trim().split(/\s+/).length;
+
+    // Check if input has at least 50 words
+    if (wordCount < 50) {
+      toast.error(
+        "Given input is invalid for the prediction.",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+        }
+      );
+      return;
+    }
+
     try {
       let inputForPrediction = textInput;
 
