@@ -10,12 +10,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.2",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/vite": "^4.1.5",
+    "apexcharts": "^4.7.0",
     "axios": "^1.8.4",
     "react": "^19.0.0",
+    "react-apexcharts": "^1.7.0",
     "react-datepicker": "^8.3.0",
     "react-dom": "^19.0.0",
+    "react-hot-toast": "^2.5.2",
+    "react-icons": "^5.5.0",
     "react-media-recorder": "^1.7.1",
     "react-router-dom": "^7.5.0",
     "react-toastify": "^11.0.5",
