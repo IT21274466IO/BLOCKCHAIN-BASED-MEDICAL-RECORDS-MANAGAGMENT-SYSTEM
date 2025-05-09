@@ -91,12 +91,6 @@ export default function DoctorLayout() {
 
       {/* Main Content */}
       <main className="flex-1 p-8 mb-16">
-        <h1 className="text-3xl font-semibold text-gray-800 mb-6">
-          Welcome, Doctor 👨‍⚕️
-        </h1>
-        <div className="bg-white rounded-lg shadow p-6">
-          Your dashboard content goes here.
-        </div>
         <Outlet />
       </main>
 

@@ -26,7 +26,7 @@ function App() {
               </ProtectedRoute>
             }
           >
-            <Route index element={<DashboardHome />} />
+            <Route  path=""  element={<DashboardHome />} />
             <Route path="appointments" element={<Appointments />} />
             <Route path="availability" element={<Availability />} />
             <Route path="medical-records" element={<MedicalRecords />} />
